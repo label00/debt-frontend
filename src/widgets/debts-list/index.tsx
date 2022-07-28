@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react';
-import { Button, ErrorCard, Skeleton } from 'shared/ui';
-import { DebtsCard, debtsModel } from 'entities';
+import { Button, EmptyCard, ErrorCard, Skeleton } from 'shared/ui';
+import { DebtsCard, debtsModel, historyModel } from 'entities';
 import { ForgiveModal, forgiveModel, RepayDebtModel, repayModalModel } from 'feutures';
 import { BanknotesIcon } from '@heroicons/react/24/outline';
 
@@ -19,19 +19,21 @@ const DebtsList = () => {
   if (loading) {
     return (
       <Skeleton.Container>
-        <div className="grid sm:grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] gap-4">
-          <Skeleton.Rows count={3} height="h-14" />
-        </div>
+        <Skeleton.Rows
+          className="grid sm:grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] gap-4"
+          count={3}
+          height="h-14"
+        />
       </Skeleton.Container>
     );
   }
 
   if (!debts.length) {
     return (
-      <div className="border border-dashed border-gray-400 px-4 py-2 rounded-md flex flex-col items-center">
+      <EmptyCard>
         <BanknotesIcon className="h-16 w-16 stroke-gray-400" />
         <span className="font-medium text-gray-400">Вы и вам ничего не должны</span>
-      </div>
+      </EmptyCard>
     );
   }
 
@@ -51,6 +53,7 @@ const DebtsList = () => {
           <DebtsCard
             key={debt.userId}
             debt={debt}
+            onClick={() => historyModel.navigateToHistory(debt.userId)}
             action={
               <Button
                 variant="contained"

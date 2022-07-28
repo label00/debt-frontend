@@ -14,15 +14,16 @@ const Row = ({ height = 'h-14' }: RowProps) => <div className={cn(height, 'bg-sl
 
 type RowsProps = RowProps & {
   count: number;
+  className?: string;
 };
 
-const Rows = ({ count, ...rowProps }: RowsProps) => {
+const Rows = ({ count, className, ...rowProps }: RowsProps) => {
   return (
-    <>
-      {Array.from({ length: count }).map((_, i) => (
+    <div className={className}>
+      {Array.from({ length: count }, (_, i) => (
         <Row key={i} {...rowProps} />
       ))}
-    </>
+    </div>
   );
 };
 

@@ -8,4 +8,5 @@ export * from './Table';
 export * from './Avatar';
 export * from './Chip';
 export * from './Skeleton';
-export * from './ErrorCard';
+export * from './Cards';
+export * from './Pagination';

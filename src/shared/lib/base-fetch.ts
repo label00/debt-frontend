@@ -4,8 +4,9 @@ import { createEvent } from 'effector';
 
 export const unauthorizedError = createEvent();
 
-export const baseFetch = (path: string, method = 'GET', body?: Record<string, unknown>) => {
+const baseFetch = (path: string, method = 'GET', body?: Record<string, unknown>): Promise<Response> => {
   const accessToken = getSavedToken();
+
   return fetch(`${API_URL}${path}`, {
     method,
     headers: {
@@ -13,11 +14,14 @@ export const baseFetch = (path: string, method = 'GET', body?: Record<string, un
       Authorization: `Bearer ${accessToken}`,
     },
     body: body ? JSON.stringify(body) : null,
-  }).then((res) => {
-    if (!res.ok && res.status === 401) {
-      unauthorizedError();
-    }
-
-    return res.ok ? res : Promise.reject(res);
-  });
+  })
+    .then((res) => (res.ok ? res : Promise.reject(res)))
+    .catch((res) => {
+      if (!res.ok && res.status === 401) {
+        unauthorizedError();
+      }
+      return Promise.reject(res);
+    });
 };
+
+export { baseFetch };

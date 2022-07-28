@@ -5,6 +5,7 @@ import { Avatar, Chip, BadgeColorsType } from 'shared/ui';
 type DebtsCardProps = {
   debt: UsersDebts;
   action?: ReactNode;
+  onClick?: () => void;
 };
 
 const BADGES_TEXT = {
@@ -17,11 +18,17 @@ const BADGES_COLORS: Record<string, BadgeColorsType> = {
   borrow: 'green',
 };
 
-export const DebtsCard = ({ debt, action }: DebtsCardProps) => {
+export const DebtsCard = ({ debt, action, onClick }: DebtsCardProps) => {
   const initial = debt.userName.at(0) ?? 'N';
 
   return (
-    <div className="flex items-center gap-2 bg-white rounded-2xl max-w-full px-4 py-2 shadow-md border border-gray-100">
+    <div
+      className="flex items-center gap-2 bg-white rounded-2xl max-w-full
+                 px-4 py-2 shadow-md border border-gray-100 cursor-pointer
+                 hover:shadow-lg
+      "
+      onClick={onClick}
+    >
       <Avatar>{initial}</Avatar>
       <div className="flex-1 flex justify-between items-center">
         <div className="flex flex-col text-start relative">

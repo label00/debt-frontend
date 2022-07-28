@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { GuardPath } from 'feutures/auth';
-import { Dashboard, LoginPage } from 'pages';
+import { Dashboard, LoginPage, History } from 'pages';
 import { Layout, LayoutSkeleton } from 'widgets';
 import { attachNavigate } from 'shared/lib';
 import { useEffect } from 'react';
@@ -11,10 +10,10 @@ const _Routing = () => {
   return (
     <Routes>
       <Route element={<LayoutSkeleton />}>
-        <Route path="/" element={<GuardPath />}>
+        <Route path="/">
           <Route element={<Layout />}>
             <Route index element={<Dashboard />}></Route>
-            <Route path="history" element={'History'}></Route>
+            <Route path="history/:id" element={<History />}></Route>
           </Route>
         </Route>
       </Route>
