@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-import { User } from "@firebase/auth";
-import { onAuthStateChanged, signIn, signOut } from "./model";
-import { useLocalStorage } from "../../shared/hooks";
+import { useLocalStorage } from '../../shared/hooks';
+import { auth, User } from '../../shared/api';
+import { USER_INFO } from '../../shared/consts';
 
 type AuthHookType = {
   user: User | null;
@@ -10,25 +9,16 @@ type AuthHookType = {
   logout: () => void;
 }
 
-const USER_INFO = 'USER_INFO'
-
 export const useAuth = (): AuthHookType => {
   const [user, setUser] = useLocalStorage<User | null>(USER_INFO, null);
   const isAuth = !!user;
 
-  useEffect(() => {
-    const unsub = onAuthStateChanged((user) => {
-      setUser(user)
-    })
-    return () => unsub()
-  }, [setUser])
-
   const login = async (email: string, pass: string) => {
-    await signIn(email, pass);
+    const user = await auth(email, pass);
+    setUser(user);
   }
 
   const logout = async () => {
-    await signOut()
     setUser(null);
   }
 

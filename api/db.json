@@ -1,1 +1,157 @@
-{}
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Александр",
+      "email": "vvvvv4362@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "name": "Влад",
+      "email": "vlad@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": 3,
+      "name": "Леонид",
+      "email": "leonid@gmail.com",
+      "password": "123"
+    }
+  ],
+  "debts": [
+    {
+      "userId": 2,
+      "amount": 50,
+      "transactionId": 1,
+      "lenderId": 1,
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "amount": 50,
+      "transactionId": 1,
+      "lenderId": 1,
+      "id": 2
+    },
+    {
+      "userId": "3",
+      "amount": 50,
+      "transactionId": 2,
+      "lenderId": 1,
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "amount": 1,
+      "transactionId": 3,
+      "lenderId": 1,
+      "id": 4
+    },
+    {
+      "userId": "3",
+      "amount": 1,
+      "transactionId": 4,
+      "lenderId": 1,
+      "id": 5
+    },
+    {
+      "userId": "3",
+      "amount": 1,
+      "transactionId": 5,
+      "lenderId": 1,
+      "id": 6
+    },
+    {
+      "userId": "3",
+      "amount": 240,
+      "transactionId": 6,
+      "lenderId": 1,
+      "id": 7
+    },
+    {
+      "userId": "3",
+      "amount": 350,
+      "transactionId": 6,
+      "lenderId": 1,
+      "id": 8
+    },
+    {
+      "userId": "2",
+      "amount": 1234,
+      "transactionId": 7,
+      "lenderId": 1,
+      "id": 9
+    }
+  ],
+  "transactions": [
+    {
+      "userId": 1,
+      "description": "За такси",
+      "type": "add",
+      "createdAt": 1660794473744,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "description": "За такси",
+      "type": "add",
+      "createdAt": 1660797628642,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "type": "add",
+      "description": "Тест",
+      "createdAt": 1660798702133,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "type": "add",
+      "description": "1",
+      "createdAt": 1660806141371,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "type": "add",
+      "description": "1",
+      "createdAt": 1660808478107,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "type": "add",
+      "description": "1",
+      "createdAt": 1660808522801,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "type": "add",
+      "description": "За такси",
+      "createdAt": 1660860458673,
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "type": "add",
+      "description": "Долг",
+      "createdAt": 1660861106018,
+      "id": 8
+    }
+  ],
+  "test": [
+    {
+      "userId": 1,
+      "description": "transaction",
+      "infoIds": [
+        1,
+        2
+      ],
+      "createdAt": 1660480488903,
+      "id": 1
+    }
+  ]
+}

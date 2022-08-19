@@ -1,12 +1,17 @@
 import React from 'react';
-import { Routing } from "../pages";
-import { BrowserRouter } from "react-router-dom";
+import { Routing } from '../pages';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from '../entities';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routing/>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routing/>
+      </BrowserRouter>
+    </Provider>
+
   );
 }
 

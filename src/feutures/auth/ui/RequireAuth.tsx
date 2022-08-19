@@ -1,12 +1,8 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../index";
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../index';
 
-export const RequireAuth = ({children}: { children: JSX.Element }) => {
-  const {isAuth} = useAuth();
+export const RequireAuth = () => {
+  const { isAuth } = useAuth();
 
-  if (isAuth) {
-    return children;
-  }
-
-  return <Navigate to="/login"/>
+  return isAuth ? <Outlet/> : <Navigate to="/login"/>
 }

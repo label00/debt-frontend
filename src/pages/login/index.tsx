@@ -1,8 +1,8 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Auth } from "../../feutures";
-import { useNavigate } from "react-router-dom";
-import { Button, Input } from "../../shared/ui";
-import { object, string } from "yup";
+import { ErrorMessage, Form, Formik } from 'formik';
+import { Auth } from '../../feutures';
+import { useNavigate } from 'react-router-dom';
+import { Button, Input } from '../../shared/ui';
+import { object, string } from 'yup';
 
 type LoginValues = {
   email: string;
@@ -43,15 +43,15 @@ export const LoginPage = () => {
                 <Form>
                   <div className="flex flex-col space-y-4 mb-6">
                     <div>
-                      <Field label="Email" name="email" type="email" as={Input}/>
+                      <Input label="Email" name="email" type="email"/>
                       <ErrorMessage className="absolute text-xs text-red-600" component="div" name="email"/>
                     </div>
                     <div>
-                      <Field label="Пароль" name="password" type="password" as={Input}/>
+                      <Input label="Пароль" name="password" type="password"/>
                       <ErrorMessage className="absolute text-xs text-red-600" component="div" name="password"/>
                     </div>
                   </div>
-                  <Button disabled={isSubmitting || (touched && !isValid)} type="submit">Войти</Button>
+                  <Button variant="contained" disabled={isSubmitting || (touched && !isValid)} type="submit">Войти</Button>
                 </Form>
               )}
             </Formik>
