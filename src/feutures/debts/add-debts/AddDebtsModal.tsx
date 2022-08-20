@@ -1,10 +1,9 @@
 import { FieldArray, Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
 import { array, number, object, string } from 'yup';
 import { Button, Dialog, Input } from '../../../shared/ui';
-import { AppDispatch, fetchDebts } from '../../../entities';
 import { addDebts } from '../../../shared/api';
 import { UserSelect } from '../../users';
+import { createNewDebt } from '../../../entities';
 
 type FormValue = {
   description: string;
@@ -35,12 +34,11 @@ type AddTransactionModalProps = {
 }
 
 export const AddDebtsModal = ({ isOpen = false, onClose }: AddTransactionModalProps) => {
-  const dispatch = useDispatch<AppDispatch>();
 
   const dispatchAddTransaction = async (data: FormValue) => {
     try {
       await addDebts(data)
-      dispatch(fetchDebts())
+      createNewDebt()
       onClose();
     } catch (e) {
       // todo: show notification
@@ -77,7 +75,7 @@ export const AddDebtsModal = ({ isOpen = false, onClose }: AddTransactionModalPr
                         <div key={index}>
                           <div className="space-y-2">
                             <UserSelect fieldName={`debts.${index}.userId`}/>
-                            <Input name={`debts.${index}.amount`} type="number" label="Сумма"/>
+                            <Input name={`debts.${index}.amount`} type="number" min="0" label="Сумма"/>
                           </div>
                           {(index !== 0 || values.debts.length > 1) && (<div>
                             <Button

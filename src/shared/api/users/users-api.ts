@@ -1,7 +1,8 @@
-import { baseFetch, getCurrentUser } from '../../lib';
+import { baseFetch } from '../../lib';
+import { getSavedUser } from '../auth';
 
 export const getUsers = async () => {
-  const { id } = getCurrentUser();
+  const { id } = getSavedUser()!;
 
   const res = await baseFetch(`/users?id_ne=${id}&_delay=2000`)
 

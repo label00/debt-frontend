@@ -1,35 +1,34 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, DebtsList, fetchDebts } from '../../entities';
-import { selectDebt } from '../../entities/debts/model/transactions.selectors';
+import { $debtState, DebtsList, moundedDashboard } from '../../entities';
 import { AddDebtsModal } from '../../feutures/debts';
-import { Button } from '../../shared/ui';
+import { Button, H3 } from '../../shared/ui';
+import { useStore } from 'effector-react';
 
-const PageContent = ({ handleOpen }: ContentProps) => {
-  const { debts, loaded, error } = useSelector(selectDebt);
+const PageContent = () => {
+  const { debts, loading, error } = useStore($debtState);
 
   if (error) {
     return <div>{error}</div>
   }
-  if (!loaded) {
+
+  if (loading) {
     return <div>Loading...</div>
   }
+
   if (!debts.length) {
     return <div>Empty</div>
   }
 
-  return <DebtsList debts={debts} action={<Button size="small" onClick={handleOpen}>Добавить долг</Button>}/>
+  return <DebtsList debts={debts}/>
 }
 
 
 export const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const promise = dispatch(fetchDebts());
-    return promise.abort;
-  }, [dispatch])
+    moundedDashboard()
+  }, [])
 
   const handleClose = () => {
     setIsOpen(false);
@@ -42,10 +41,12 @@ export const Dashboard = () => {
   return (
     <div className="container mx-auto">
       <AddDebtsModal isOpen={isOpen} onClose={handleClose}/>
-      <PageContent handleOpen={handleOpen}/>
+      <div>
+        <H3>Список долгов</H3>
+        <Button size="small" onClick={handleOpen}>Добавить долг</Button>
+      </div>
+
+      <PageContent/>
     </div>
   );
-}
-type ContentProps = {
-  handleOpen: () => void;
 }

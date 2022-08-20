@@ -1,8 +1,8 @@
 import { ErrorMessage, Form, Formik } from 'formik';
-import { Auth } from '../../feutures';
 import { useNavigate } from 'react-router-dom';
 import { Button, Input } from '../../shared/ui';
 import { object, string } from 'yup';
+import { loginUserFx } from '../../entities/user';
 
 type LoginValues = {
   email: string;
@@ -14,17 +14,21 @@ const SigninSchema = object().shape({
     .email('Неккоретный email')
     .required('Обязательное поле'),
   password: string()
-    .required('Обязательное поле'),
+    .required('Обязательное поле')
+    .min(6, 'Минимальное количество символов - 6'),
 });
 
 
 export const LoginPage = () => {
-  const {login} = Auth.useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (data: LoginValues) => {
-    await login(data.email, data.password);
-    navigate('/', {replace: true})
+    try {
+      await loginUserFx(data);
+      navigate('/', { replace: true })
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

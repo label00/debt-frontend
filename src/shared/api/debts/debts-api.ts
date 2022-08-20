@@ -1,14 +1,15 @@
 import { Debt, DebtBody } from './types';
-import { baseFetch, getCurrentUser } from '../../lib';
+import { baseFetch } from '../../lib';
+import { getSavedUser } from '../auth';
 
 export const getDebts = async (): Promise<Debt[]> => {
-  const currentUser = getCurrentUser();
+  const currentUser = getSavedUser()!;
   const res = await baseFetch(`/debts?lenderId=${currentUser.id}`)
   return await res.json();
 }
 
 export const addDebts = async (debt: DebtBody): Promise<Debt> => {
-  const currentUser = getCurrentUser();
+  const currentUser = getSavedUser()!;
   const body = {
     userId: currentUser.id,
     type: 'add',
