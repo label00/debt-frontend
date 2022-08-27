@@ -1,6 +1,6 @@
 import { Select } from '../../shared/ui';
 import { Option } from '../../shared/ui/Fields/Select';
-import { useCachedUsersState } from '../../entities';
+import { useCachedUsersState } from './cached-users-hook';
 
 type SelectDebtProps = {
   fieldName: string;

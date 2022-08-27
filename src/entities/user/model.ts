@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore } from 'effector';
-import { auth, clearUser, getSavedUser, saveUser } from '../../../shared/api';
+import { auth, clearUser, getSavedUser, saveUser } from '../../shared/api';
 
 type UserData = {
   email: string;
@@ -29,4 +29,4 @@ loginUserFx.done.watch(({ result }) => saveUser(result.user));
 logout.watch(() => clearUser());
 
 
-export { $user, loginUserFx, logout };
+export const userModel = { $user, loginUserFx, logout };

@@ -1,11 +1,11 @@
-import { Layout } from '../../../shared/ui';
+import { Layout } from '../../shared/ui';
 import { Link } from 'react-router-dom';
-import { LogoutButton } from '../../../feutures/auth';
-import { $user } from '../../../entities/user';
+import { LogoutButton } from '../../feutures/auth';
+import { userModel } from '../../entities';
 import { useStore } from 'effector-react';
 
 export const Header = () => {
-  const { name } = useStore($user);
+  const { name } = useStore(userModel.$user);
   const initial = name?.at(0) ?? 'N';
 
   return (

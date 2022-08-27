@@ -2,7 +2,7 @@ import { useField } from 'formik';
 import { HTMLInputTypeAttribute, InputHTMLAttributes } from 'react';
 import cn from 'classnames';
 
-type InputProps = { label: string, type: HTMLInputTypeAttribute, name: string } & InputHTMLAttributes<any>
+type InputProps = { label?: string, type?: HTMLInputTypeAttribute, name: string } & InputHTMLAttributes<any>
 
 export const Input = ({ label, type = 'text', name, ...rest }: InputProps) => {
   const [field, meta] = useField({ name });

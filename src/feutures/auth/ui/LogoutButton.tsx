@@ -1,6 +1,6 @@
 import { Button } from '../../../shared/ui';
-import { logout } from '../../../entities/user';
+import { userModel } from '../../../entities';
 
 export const LogoutButton = () => {
-  return <Button size="small" color="secondary" variant="text" onClick={() => logout()}>Выйти</Button>
+  return <Button size="small" color="secondary" variant="text" onClick={() => userModel.logout()}>Выйти</Button>
 }

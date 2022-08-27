@@ -1,14 +1,9 @@
 import { FieldArray, Form, Formik } from 'formik';
 import { array, number, object, string } from 'yup';
 import { Button, Dialog, Input } from '../../../shared/ui';
-import { addDebts } from '../../../shared/api';
 import { UserSelect } from '../../users';
-import { createNewDebt } from '../../../entities';
-
-type FormValue = {
-  description: string;
-  debts: { userId: number; amount: number }[];
-}
+import { addDebtsFx } from './model';
+import { FormValue } from './types';
 
 const validationSchema = object().shape({
   description: string().required(),
@@ -37,8 +32,7 @@ export const AddDebtsModal = ({ isOpen = false, onClose }: AddTransactionModalPr
 
   const dispatchAddTransaction = async (data: FormValue) => {
     try {
-      await addDebts(data)
-      createNewDebt()
+      await addDebtsFx(data)
       onClose();
     } catch (e) {
       // todo: show notification
@@ -46,7 +40,7 @@ export const AddDebtsModal = ({ isOpen = false, onClose }: AddTransactionModalPr
   }
 
   return (
-    <Dialog.Root isOpen={isOpen}>
+    <Dialog.Root isOpen={isOpen} onClose={onClose}>
       <Dialog.Content>
         <Dialog.Title>Добавить долг!</Dialog.Title>
 

@@ -26,4 +26,13 @@ export type Debt = {
   user: User;
 }
 
+export type UsersDebts = {
+  userId: number;
+  userName: string;
+  amount: number;
+  type: 'loan' | 'borrow';
+  typeName: string;
+}
+
+
 

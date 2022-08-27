@@ -1,33 +1,15 @@
 import { useEffect, useState } from 'react';
-import { $debtState, DebtsList, moundedDashboard } from '../../entities';
-import { AddDebtsModal } from '../../feutures/debts';
+import { debtsModel } from '../../entities';
+import { AddDebtsModal, ForgiveModal } from '../../feutures';
 import { Button, H3 } from '../../shared/ui';
-import { useStore } from 'effector-react';
-
-const PageContent = () => {
-  const { debts, loading, error } = useStore($debtState);
-
-  if (error) {
-    return <div>{error}</div>
-  }
-
-  if (loading) {
-    return <div>Loading...</div>
-  }
-
-  if (!debts.length) {
-    return <div>Empty</div>
-  }
-
-  return <DebtsList debts={debts}/>
-}
+import { DebtsList } from '../../widgets';
 
 
 export const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    moundedDashboard()
+    debtsModel.moundedDashboard()
   }, [])
 
   const handleClose = () => {
@@ -46,7 +28,9 @@ export const Dashboard = () => {
         <Button size="small" onClick={handleOpen}>Добавить долг</Button>
       </div>
 
-      <PageContent/>
+      <DebtsList/>
+
+      <ForgiveModal/>
     </div>
   );
 }

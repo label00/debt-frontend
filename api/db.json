@@ -11,8 +11,79 @@
       "name": "Leonid",
       "password": "$2a$10$toOSuLPGaHPKZSLxfK1BQOpf9ASym6F2XjMwOnjQppdyLQktngXs6",
       "id": 2
+    },
+    {
+      "email": "lol4362@gmail.com",
+      "name": "Vlad",
+      "password": "$2a$10$toOSuLPGaHPKZSLxfK1BQOpf9ASym6F2XjMwOnjQppdyLQktngXs6",
+      "id": 3
     }
   ],
-  "debts": [],
-  "transactions": []
+  "debts": [
+    {
+      "userId": "2",
+      "amount": 200,
+      "transactionId": 1,
+      "lenderId": 1,
+      "id": 1
+    },
+    {
+      "userId": "3",
+      "amount": 100,
+      "transactionId": 1,
+      "lenderId": 1,
+      "id": 2
+    },
+    {
+      "userId": "2",
+      "amount": 200,
+      "transactionId": 2,
+      "lenderId": 1,
+      "id": 3
+    },
+    {
+      "userId": "3",
+      "amount": 100,
+      "transactionId": 3,
+      "lenderId": 1,
+      "id": 4
+    },
+    {
+      "userId": "2",
+      "amount": 350,
+      "transactionId": 4,
+      "lenderId": 1,
+      "id": 5
+    }
+  ],
+  "transactions": [
+    {
+      "description": "Тест",
+      "userId": 1,
+      "type": "add",
+      "createdAt": 1661621089742,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "type": "forgive",
+      "createdAt": 1661621275983,
+      "descriptions": "Простил долг",
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "type": "forgive",
+      "createdAt": 1661621278127,
+      "descriptions": "Простил долг",
+      "id": 3
+    },
+    {
+      "description": "Leond",
+      "userId": 1,
+      "type": "add",
+      "createdAt": 1661621292301,
+      "id": 4
+    }
+  ]
 }
