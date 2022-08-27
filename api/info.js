@@ -67,5 +67,5 @@ module.exports = (req, res, db) => {
   return debts.map(debt => {
     const type = debt.amount > 0 ? 'loan' : 'borrow';
     return ({userId: debt.userId, userName: debt.user.name, amount: Math.abs(debt.amount), type, typeName: TYPES[type]})
-  })
+  }).filter(debts => debts.amount > 0);
 }

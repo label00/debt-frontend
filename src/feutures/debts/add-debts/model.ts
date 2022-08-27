@@ -1,15 +1,25 @@
-import { createEffect, forward } from 'effector';
+import { createEffect, createEvent, createStore, forward } from 'effector';
 import { addDebts } from '../../../shared/api';
 import { debtsModel } from '../../../entities';
 import { FormValue } from './types';
 
-const addDebtsFx = createEffect(async (data: FormValue) => {
-  return await addDebts(data)
-})
+const $isOpen = createStore(false);
+const openModal = createEvent();
+const closeModal = createEvent();
+const addDebtsFx = createEffect(async (data: FormValue) => await addDebts(data));
+
+$isOpen
+  .on(openModal, () => true)
+  .on(closeModal, () => false)
 
 forward({
   from: addDebtsFx.done,
-  to: debtsModel.fetchDebtsFx,
+  to: [closeModal, debtsModel.fetchDebtsFx],
 })
 
-export { addDebtsFx }
+export const addDebtModel = {
+  $isOpen,
+  openModal,
+  closeModal,
+  addDebtsFx,
+}

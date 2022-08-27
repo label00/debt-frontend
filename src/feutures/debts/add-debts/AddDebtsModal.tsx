@@ -1,8 +1,9 @@
 import { FieldArray, Form, Formik } from 'formik';
 import { array, number, object, string } from 'yup';
+import { useStore } from 'effector-react';
 import { Button, Dialog, Input } from '../../../shared/ui';
 import { UserSelect } from '../../users';
-import { addDebtsFx } from './model';
+import { addDebtModel } from './model';
 import { FormValue } from './types';
 
 const validationSchema = object().shape({
@@ -23,24 +24,21 @@ const initialValue: FormValue = {
   }],
 }
 
-type AddTransactionModalProps = {
-  isOpen?: boolean;
-  onClose: () => void;
-}
+export const AddDebtsModal = () => {
+  const isOpen = useStore(addDebtModel.$isOpen);
 
-export const AddDebtsModal = ({ isOpen = false, onClose }: AddTransactionModalProps) => {
 
   const dispatchAddTransaction = async (data: FormValue) => {
     try {
-      await addDebtsFx(data)
-      onClose();
+      await addDebtModel.addDebtsFx(data)
+      addDebtModel.closeModal()
     } catch (e) {
       // todo: show notification
     }
   }
 
   return (
-    <Dialog.Root isOpen={isOpen} onClose={onClose}>
+    <Dialog.Root isOpen={isOpen} onClose={addDebtModel.closeModal}>
       <Dialog.Content>
         <Dialog.Title>Добавить долг!</Dialog.Title>
 
@@ -89,7 +87,7 @@ export const AddDebtsModal = ({ isOpen = false, onClose }: AddTransactionModalPr
               </FieldArray>
 
               <Dialog.Footer>
-                <Button onClick={onClose}>Закрыть</Button>
+                <Button onClick={() => addDebtModel.closeModal()}>Закрыть</Button>
                 <Button disabled={submitCount > 0 && !isValid} variant="contained" type="submit">Добавить</Button>
               </Dialog.Footer>
             </Form>

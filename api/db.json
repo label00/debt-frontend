@@ -54,6 +54,13 @@
       "transactionId": 4,
       "lenderId": 1,
       "id": 5
+    },
+    {
+      "userId": "1",
+      "amount": 5000,
+      "transactionId": 5,
+      "lenderId": 3,
+      "id": 6
     }
   ],
   "transactions": [
@@ -84,6 +91,13 @@
       "type": "add",
       "createdAt": 1661621292301,
       "id": 4
+    },
+    {
+      "description": "Так так так",
+      "userId": 3,
+      "type": "add",
+      "createdAt": 1661628793357,
+      "id": 5
     }
   ]
 }
