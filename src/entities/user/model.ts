@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore } from 'effector';
-import { auth, clearUser, getSavedUser, saveUser } from '../../shared/api';
+import { auth, clearUser, getSavedUser, saveUser } from 'shared/api';
 
 type UserData = {
   email: string;

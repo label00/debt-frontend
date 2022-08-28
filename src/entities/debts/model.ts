@@ -1,5 +1,5 @@
 import { combine, createEffect, createEvent, createStore, restore, sample } from 'effector';
-import { getCurrentUserDebts, UsersDebts } from '../../shared/api';
+import { getCurrentUserDebts, UsersDebts } from 'shared/api';
 
 const fetchDebtsFx = createEffect(async () => {
   return await getCurrentUserDebts();

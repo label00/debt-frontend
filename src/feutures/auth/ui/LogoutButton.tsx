@@ -1,5 +1,5 @@
-import { Button } from '../../../shared/ui';
-import { userModel } from '../../../entities';
+import { Button } from 'shared/ui';
+import { userModel } from 'entities';
 
 export const LogoutButton = () => {
   return (

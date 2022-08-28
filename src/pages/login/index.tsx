@@ -1,8 +1,8 @@
 import { ErrorMessage, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { Button, Input } from '../../shared/ui';
+import { Button, Input } from 'shared/ui';
 import { object, string } from 'yup';
-import { userModel } from '../../entities';
+import { userModel } from 'entities';
 
 type LoginValues = {
   email: string;

@@ -1,6 +1,6 @@
 import { createEffect, createEvent, createStore, forward } from 'effector';
-import { addDebts } from '../../../shared/api';
-import { debtsModel } from '../../../entities';
+import { addDebts } from 'shared/api';
+import { debtsModel } from 'entities';
 import { FormValue } from './types';
 
 const $isOpen = createStore(false);

@@ -1,4 +1,4 @@
-import { User } from '../users/types';
+import { User } from '../users';
 
 export interface DebtBody {
   description: string;

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { combine, createEvent, createStore, sample } from 'effector';
 import { useUnit } from 'effector-react';
-import { usersModel } from '../../entities';
+import { usersModel } from 'entities';
 
 const $loaded = createStore(false);
 const mounded = createEvent();

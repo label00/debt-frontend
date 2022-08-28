@@ -1,7 +1,7 @@
-import { Button, Table } from '../../shared/ui';
-import { debtsModel, DebtsRow } from '../../entities';
+import { Button, Table } from 'shared/ui';
+import { debtsModel, DebtsRow } from 'entities';
 import { useStore } from 'effector-react';
-import { forgiveModel } from '../../feutures';
+import { forgiveModel } from 'feutures';
 
 const DebtsList = () => {
   const { debts, loading, error } = useStore(debtsModel.$debtState);

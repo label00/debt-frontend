@@ -1,6 +1,6 @@
 import { createEffect, createEvent, createStore, forward, sample } from 'effector';
-import { forgiveDebt } from '../../../shared/api';
-import { debtsModel } from '../../../entities';
+import { forgiveDebt } from 'shared/api';
+import { debtsModel } from 'entities';
 
 const $modal = createStore<{ userId?: number; amount?: number; isOpen: boolean }>({
   isOpen: false,

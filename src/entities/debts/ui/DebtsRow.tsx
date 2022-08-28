@@ -1,5 +1,5 @@
-import { UsersDebts } from '../../../shared/api';
-import { Table } from '../../../shared/ui';
+import { UsersDebts } from 'shared/api';
+import { Table } from 'shared/ui';
 import { ReactNode } from 'react';
 
 type DebtsRowProps = {

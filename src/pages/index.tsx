@@ -1,8 +1,8 @@
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { RequireAuth } from 'feutures';
+import { Header } from 'widgets';
+import { Layout as SharedLayout } from 'shared/ui';
 import { LoginPage } from './login';
-import { RequireAuth } from '../feutures';
-import { Header } from '../widgets';
-import { Layout as SharedLayout } from '../shared/ui';
 import { Dashboard } from './dashboard';
 
 const Layout = () => (

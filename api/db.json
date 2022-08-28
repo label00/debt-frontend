@@ -61,6 +61,13 @@
       "transactionId": 5,
       "lenderId": 3,
       "id": 6
+    },
+    {
+      "userId": "2",
+      "amount": 10,
+      "transactionId": 6,
+      "lenderId": 1,
+      "id": 7
     }
   ],
   "transactions": [
@@ -98,6 +105,13 @@
       "type": "add",
       "createdAt": 1661628793357,
       "id": 5
+    },
+    {
+      "userId": 1,
+      "type": "forgive",
+      "createdAt": 1661701513746,
+      "descriptions": "Простил долг",
+      "id": 6
     }
   ]
 }

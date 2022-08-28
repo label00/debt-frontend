@@ -1,6 +1,5 @@
 import { combine, createEffect, createStore } from 'effector';
-import { getUsers } from '../../shared/api/users/users-api';
-import { User } from '../../shared/api';
+import { User, getUsers } from 'shared/api';
 
 const fetchUsersFx = createEffect(async () => await getUsers());
 const $users = createStore([] as User[]);

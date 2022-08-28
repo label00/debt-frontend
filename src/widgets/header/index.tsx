@@ -1,7 +1,7 @@
-import { Layout } from '../../shared/ui';
+import { Layout } from 'shared/ui';
 import { Link } from 'react-router-dom';
-import { LogoutButton } from '../../feutures/auth';
-import { userModel } from '../../entities';
+import { LogoutButton } from 'feutures/auth';
+import { userModel } from 'entities';
 import { useStore } from 'effector-react';
 
 export const Header = () => {

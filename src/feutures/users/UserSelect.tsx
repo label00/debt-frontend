@@ -1,5 +1,4 @@
-import { Select } from '../../shared/ui';
-import { Option } from '../../shared/ui/Fields/Select';
+import { Select, Option } from 'shared/ui';
 import { useCachedUsersState } from './cached-users-hook';
 
 type SelectDebtProps = {

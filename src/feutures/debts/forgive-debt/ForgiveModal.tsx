@@ -1,4 +1,4 @@
-import { Button, Dialog, Input } from '../../../shared/ui';
+import { Button, Dialog, Input } from 'shared/ui';
 import { useStore } from 'effector-react';
 import { Form, Formik } from 'formik';
 import { forgiveModel } from './model';

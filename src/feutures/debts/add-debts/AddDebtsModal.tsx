@@ -1,7 +1,7 @@
 import { FieldArray, Form, Formik } from 'formik';
 import { array, number, object, string } from 'yup';
 import { useStore } from 'effector-react';
-import { Button, Dialog, Input } from '../../../shared/ui';
+import { Button, Dialog, Input } from 'shared/ui';
 import { UserSelect } from '../../users';
 import { addDebtModel } from './model';
 import { FormValue } from './types';

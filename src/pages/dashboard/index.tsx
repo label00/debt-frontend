@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { debtsModel } from '../../entities';
-import { addDebtModel, AddDebtsModal, ForgiveModal } from '../../feutures';
-import { Button, H3 } from '../../shared/ui';
-import { DebtsList } from '../../widgets';
+import { debtsModel } from 'entities';
+import { addDebtModel, AddDebtsModal, ForgiveModal } from 'feutures';
+import { Button, H3 } from 'shared/ui';
+import { DebtsList } from 'widgets';
 
 export const Dashboard = () => {
   useEffect(() => {
