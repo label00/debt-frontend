@@ -4,8 +4,8 @@ import { ReactNode } from 'react';
 
 type DebtsRowProps = {
   debt: UsersDebts;
-  action?: ReactNode,
-}
+  action?: ReactNode;
+};
 
 export const DebtsRow = ({ debt, action }: DebtsRowProps) => {
   return (
@@ -14,9 +14,7 @@ export const DebtsRow = ({ debt, action }: DebtsRowProps) => {
       <Table.Cell>{debt.typeName}</Table.Cell>
       <Table.Cell>{debt.userName}</Table.Cell>
       <Table.Cell>{debt.amount}</Table.Cell>
-      <Table.Cell>
-        {action}
-      </Table.Cell>
+      <Table.Cell>{action}</Table.Cell>
     </Table.Row>
-  )
-}
+  );
+};

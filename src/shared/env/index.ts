@@ -9,4 +9,4 @@ const getEnvVar = (key: string) => {
   return import.meta.env[key] || '';
 };
 
-export const API_URL = getEnvVar('VITE_API_URL')
+export const API_URL = getEnvVar('VITE_API_URL');

@@ -10,5 +10,5 @@ export default defineConfig({
     origin: 'localhost',
     port: 3000,
     open: true,
-  }
+  },
 });

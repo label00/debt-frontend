@@ -12,9 +12,9 @@ export type Transaction = {
   userId: number;
   description: string;
   type: string;
-  createdAt: any;
+  createdAt: number;
   id: number;
-}
+};
 
 export type Debt = {
   userId: number;
@@ -24,7 +24,7 @@ export type Debt = {
   id: number;
   transaction: Transaction;
   user: User;
-}
+};
 
 export type UsersDebts = {
   userId: number;
@@ -32,7 +32,4 @@ export type UsersDebts = {
   amount: number;
   type: 'loan' | 'borrow';
   typeName: string;
-}
-
-
-
+};

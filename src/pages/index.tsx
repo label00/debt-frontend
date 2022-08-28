@@ -9,23 +9,23 @@ const Layout = () => (
   <>
     <Header></Header>
     <SharedLayout.Content>
-      <Outlet/>
+      <Outlet />
     </SharedLayout.Content>
   </>
-)
+);
 
 export const Routing = () => {
   return (
     <Routes>
-      <Route path="/" element={<RequireAuth/>}>
-        <Route element={<Layout/>}>
-          <Route index element={<Dashboard/>}></Route>
+      <Route path="/" element={<RequireAuth />}>
+        <Route element={<Layout />}>
+          <Route index element={<Dashboard />}></Route>
           <Route path="history" element={'History'}></Route>
         </Route>
       </Route>
 
-      <Route path="/login" element={<LoginPage/>}/>
-      <Route path="*" element={<Navigate to="/"/>}/>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
-  )
-}
+  );
+};

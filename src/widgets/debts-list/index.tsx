@@ -7,15 +7,15 @@ const DebtsList = () => {
   const { debts, loading, error } = useStore(debtsModel.$debtState);
 
   if (error) {
-    return <div>{error}</div>
+    return <div>{error}</div>;
   }
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (!debts.length) {
-    return <div>Нет долгов</div>
+    return <div>Нет долгов</div>;
   }
 
   return (
@@ -32,25 +32,27 @@ const DebtsList = () => {
         </Table.Head>
 
         <Table.Body>
-          {
-            debts.map((debt) =>
-              <DebtsRow
-                key={debt.userId}
-                debt={debt}
-                action={debt.type === 'loan' && <Button
-                  variant="text"
-                  size="small"
-                  onClick={() => forgiveModel.openModal({ userId: debt.userId, amount: debt.amount })}
-                >Простить долг</Button>}
-              />
-            )
-          }
+          {debts.map((debt) => (
+            <DebtsRow
+              key={debt.userId}
+              debt={debt}
+              action={
+                debt.type === 'loan' && (
+                  <Button
+                    variant="text"
+                    size="small"
+                    onClick={() => forgiveModel.openModal({ userId: debt.userId, amount: debt.amount })}
+                  >
+                    Простить долг
+                  </Button>
+                )
+              }
+            />
+          ))}
         </Table.Body>
       </Table.Root>
     </>
+  );
+};
 
-  )
-}
-
-
-export { DebtsList }
+export { DebtsList };

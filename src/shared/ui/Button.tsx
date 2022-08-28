@@ -3,19 +3,20 @@ import cn from 'classnames';
 
 type SizeTypes = 'small' | 'medium' /*| 'large'*/;
 type VariantType = 'text' | 'contained' | 'outline';
-type ColorType = 'primary' | 'secondary'  /*| 'success'*/ | 'error';
+type ColorType = 'primary' | 'secondary' /*| 'success'*/ | 'error';
 
-export type ButtonProps =
-  { size?: SizeTypes, variant?: VariantType, color?: ColorType, }
-  & React.ButtonHTMLAttributes<HTMLButtonElement>
+export type ButtonProps = {
+  size?: SizeTypes;
+  variant?: VariantType;
+  color?: ColorType;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const sizes = {
   medium: 'px-4 py-1 font-semibold rounded-md',
   small: 'px-3 py-1 text-sm font-medium rounded-md',
-}
+};
 
 const base = 'disabled:border-gray-100 disabled:text-gray-500 disabled:opacity-70 disabled:bg-gray-100';
-
 
 const variants: Record<VariantType, Record<ColorType, string>> = {
   text: {
@@ -29,7 +30,7 @@ const variants: Record<VariantType, Record<ColorType, string>> = {
       hover:text-purple-700 hover:bg-purple-100
       focus:text-purple-700 focus:bg-purple-100
     `,
-    error: 'todo'
+    error: 'todo',
   },
   outline: {
     primary: `
@@ -46,7 +47,7 @@ const variants: Record<VariantType, Record<ColorType, string>> = {
       border border-red-600 text-red-600
       hover:border-red-700 hover:text-red-700
       focus:border-red-700 focus:text-red-700
-    `
+    `,
   },
   contained: {
     primary: `
@@ -59,26 +60,20 @@ const variants: Record<VariantType, Record<ColorType, string>> = {
       hover:text-purple-700 hover:bg-purple-400
       focus:text-purple-700 focus:bg-purple-400
     `,
-    error: 'todo'
-  }
-}
+    error: 'todo',
+  },
+};
 
-
-export const Button = (
-  {
-    children,
-    type = 'button',
-    size = 'medium',
-    variant = 'outline',
-    color = 'primary',
-    className,
-    ...rest
-  }: ButtonProps) => (
-  <button
-    type={type}
-    className={cn(base, sizes[size], variants[variant][color], className)}
-    {...rest}
-  >
+export const Button = ({
+  children,
+  type = 'button',
+  size = 'medium',
+  variant = 'outline',
+  color = 'primary',
+  className,
+  ...rest
+}: ButtonProps) => (
+  <button type={type} className={cn(base, sizes[size], variants[variant][color], className)} {...rest}>
     {children}
   </button>
-)
+);

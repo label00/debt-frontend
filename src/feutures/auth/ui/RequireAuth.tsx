@@ -4,5 +4,5 @@ import { useStore } from 'effector-react';
 
 export const RequireAuth = () => {
   const isAuth = useStore($isAuth);
-  return isAuth ? <Outlet/> : <Navigate to="/login"/>
-}
+  return isAuth ? <Outlet /> : <Navigate to="/login" />;
+};
