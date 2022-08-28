@@ -12,7 +12,7 @@ export const Header = () => {
     <Layout.Header>
       <div className="flex items-center justify-between">
         <Link to="/">
-          <img src="/image/logo.png" className="w-12" alt="logo"/>
+          <img src="/src/shared/assets/image/logo.png" className="w-12" alt="logo"/>
         </Link>
         <div className="flex gap-2 items-center">
           <LogoutButton/>

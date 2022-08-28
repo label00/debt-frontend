@@ -17,22 +17,26 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^2.0.1",
+    "autoprefixer": "^10.4.8",
     "json-server": "^0.17.0",
     "json-server-auth": "^2.1.0",
-    "tailwindcss": "^3.1.6"
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.6",
+    "vite": "^3.0.9",
+    "vite-plugin-svgr": "^2.2.1",
+    "vite-tsconfig-paths": "^3.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "start:server": "node api/server.js -w",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "start:server": "node api/server.js -w"
   },
   "eslintConfig": {
     "extends": [
