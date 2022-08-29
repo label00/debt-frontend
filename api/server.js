@@ -28,9 +28,13 @@ app.use('/transactions', (req, res, next) => {
     });
 
     req.body.createdAt = Date.now();
-    if (type === 'forgive') {
-      req.body.descriptions = 'Простил долг';
+
+    const types = {
+      forgive: 'Простил долг',
+      repay: 'Отдал долг',
     }
+
+    req.body.descriptions ??= types[type];
   }
 
   next();

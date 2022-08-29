@@ -1,74 +1,95 @@
 // WRITE-ONLY CODE
 
+const mapEntries = (ojb, fn) => Object.fromEntries(Object.entries(ojb).map(([key, value]) => [key, fn(key, value)]));
+
 const TYPES = {
   loan: 'Я одолжил',
   borrow: 'Я должен',
 };
 
-const normalizeDebts = (debts, prop) =>
+const groupByUser = (debts, prop) =>
   debts.reduce((acc, debt) => {
     const { [prop]: id } = debt;
     const userDebts = acc[id] ?? [];
     return { ...acc, [id]: [...userDebts, debt] };
   }, {});
 
-const calculateFns = {
-  add: (a, b) => a + b,
-  forgive: (a, b) => a - b,
-};
-
-/**
- * @param {number} amountOne
- * @param {number} amountTwo
- * @param {'add'|'forgive'} type
- * @return {number}
- **/
-const calculateAmount = (amountOne, amountTwo, type) => {
-  return calculateFns[type](amountOne, amountTwo);
-};
-
-const groupDebts = (debts, transactions) =>
-  Object.values(debts).map((userDebts) =>
+const calculateDebts = (debts) =>
+  mapEntries(debts, (_, userDebts) =>
     userDebts.reduce((acc, item) => ({
       ...acc,
-      amount: calculateAmount(acc.amount, item.amount, transactions[item.transactionId].type),
-    }))
+      amount: acc.amount + item.amount,
+    })),
   );
 
-const getBorrowedDebt = (debts, transactions) => {
-  const normalizedDebts = normalizeDebts(debts, 'userId');
+const getDebtsByType = (debts, currentUserId, transactions) => {
+  const normalizeTransaction = Object.fromEntries(transactions.map((transaction) => [transaction.id, transaction]));
+  const debtsWithTransaction = debts.map((debt) => ({
+    ...debt,
+    transaction: normalizeTransaction[debt.transactionId],
+  }));
 
-  return groupDebts(normalizedDebts, transactions);
+  const loanedDebts = [];
+  const borrowedDebts = [];
+
+  for (const debt of debtsWithTransaction) {
+    const transactionType = debt.transaction.type;
+
+    if (transactionType === 'add') {
+      if (+debt.lenderId === +currentUserId) {
+        loanedDebts.push(debt);
+      }
+      if (+debt.userId === +currentUserId) {
+        borrowedDebts.push(debt);
+      }
+    }
+  }
+
+  return {
+    loanedDebts: calculateDebts(groupByUser(loanedDebts, 'userId')),
+    borrowedDebts: calculateDebts(groupByUser(borrowedDebts, 'lenderId')),
+  };
 };
 
-const getLoanedDebts = (debts, transactions) => {
-  const normalizedDebts = normalizeDebts(debts, 'lenderId');
+const getUsersDebts = (users, debtsByType) =>
+  users.map((user) => {
+    return {
+      user,
+      loanedDebts: debtsByType.loanedDebts[user.id],
+      borrowedDebts: debtsByType.borrowedDebts[user.id],
+    };
+  });
 
-  return Object.fromEntries(groupDebts(normalizedDebts, transactions).map((item) => [item.lenderId, item]));
+const calculateAmount = (loanedDebt, borrowedDebts) => {
+  let amount = 0;
+  if (loanedDebt) {
+    amount += loanedDebt.amount;
+  }
+  if (borrowedDebts) {
+    amount -= borrowedDebts.amount;
+  }
+
+  return amount;
 };
 
 module.exports = (req, res, db) => {
-  const { data } = res.locals;
-  const { debts: debtsList, transactions } = db.getState();
-  const normalizeTransactions = Object.fromEntries(transactions.map((item) => [item.id, item]));
-  const loanedDebtsList = debtsList.filter((debts) => debts.userId === req.query.lenderId);
-  const loanedDebts = getLoanedDebts(loanedDebtsList, normalizeTransactions);
-  const borrowedDebts = getBorrowedDebt(data, normalizeTransactions);
-  const debts = borrowedDebts.map((credit) => {
-    const debt = loanedDebts[credit.userId] ?? { amount: 0 };
-    return { ...credit, amount: credit.amount - debt.amount };
-  });
+  const { debts: debtsList, transactions, users } = db.getState();
+  const currentUserId = +req.query.lenderId;
+  const debtsByType = getDebtsByType(debtsList, currentUserId, transactions);
+  const usersDebts = getUsersDebts(users, debtsByType);
 
-  return debts
-    .map((debt) => {
-      const type = debt.amount > 0 ? 'loan' : 'borrow';
+  return usersDebts
+    .filter((item) => item.user.id !== currentUserId)
+    .filter((item) => item.loanedDebts || item.borrowedDebts)
+    .map((item) => {
+      const amount = calculateAmount(item.loanedDebts, item.borrowedDebts);
+      const type = amount > 0 ? 'loan' : 'borrow';
       return {
-        userId: debt.userId,
-        userName: debt.user.name,
-        amount: Math.abs(debt.amount),
+        userId: item.user.id,
+        userName: item.user.name,
+        amount: Math.abs(amount),
         type,
         typeName: TYPES[type],
       };
-    })
-    .filter((debts) => debts.amount > 0);
+    });
 };

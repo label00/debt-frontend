@@ -1,5 +1,5 @@
-import { baseFetch } from '../../lib';
 import { getCurrentUser } from '../auth';
+import { baseFetch } from '../../lib';
 
 export const getUsers = async () => {
   const { id } = getCurrentUser();

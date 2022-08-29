@@ -1,4 +1,4 @@
-import { User } from '../users/types';
+import { User } from '../users';
 import { baseFetch } from '../../lib';
 
 type UserResponse = {

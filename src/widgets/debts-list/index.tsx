@@ -1,7 +1,12 @@
 import { Button, Table } from 'shared/ui';
 import { debtsModel, DebtsRow } from 'entities';
 import { useStore } from 'effector-react';
-import { forgiveModel } from 'feutures';
+import { ForgiveModal, forgiveModel, RepayDebtModel, repayModalModel } from 'feutures';
+
+const BUTTONS_TITLE = {
+  loan: 'Простить',
+  borrow: 'Вернуть',
+};
 
 const DebtsList = () => {
   const { debts, loading, error } = useStore(debtsModel.$debtState);
@@ -17,6 +22,15 @@ const DebtsList = () => {
   if (!debts.length) {
     return <div>Нет долгов</div>;
   }
+
+  const handleClick = (userId: number, amount: number, type: 'loan' | 'borrow') => {
+    if (type === 'loan') {
+      forgiveModel.openModal({ userId, amount });
+    }
+    if (type === 'borrow') {
+      repayModalModel.openModal({ userId, amount });
+    }
+  };
 
   return (
     <>
@@ -37,20 +51,17 @@ const DebtsList = () => {
               key={debt.userId}
               debt={debt}
               action={
-                debt.type === 'loan' && (
-                  <Button
-                    variant="text"
-                    size="small"
-                    onClick={() => forgiveModel.openModal({ userId: debt.userId, amount: debt.amount })}
-                  >
-                    Простить долг
-                  </Button>
-                )
+                <Button variant="text" size="small" onClick={() => handleClick(debt.userId, debt.amount, debt.type)}>
+                  {BUTTONS_TITLE[debt.type]}
+                </Button>
               }
             />
           ))}
         </Table.Body>
       </Table.Root>
+
+      <RepayDebtModel />
+      <ForgiveModal />
     </>
   );
 };
