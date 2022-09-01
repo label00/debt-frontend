@@ -1,59 +1,32 @@
 import { Debt, DebtBody, UsersDebts } from './types';
-import { getCurrentUser } from '../auth';
 import { baseFetch } from '../../lib';
 
 export const getCurrentUserDebts = async (): Promise<UsersDebts[]> => {
-  const currentUser = getCurrentUser();
-  if (!currentUser) {
-    throw Error('Пользыватель не авторизован');
-  }
-  const res = await baseFetch(`/info/${currentUser.id}`);
+  const res = await baseFetch(`/debts/show`);
   return res.json();
 };
 
-export const addDebts = async (data: DebtBody): Promise<Debt> => {
-  const currentUser = getCurrentUser();
-  const body = {
-    ...data,
-    userId: currentUser.id,
-    type: 'add',
-  };
-
-  const res = await baseFetch('/transactions', 'POST', body);
-
+export const addDebts = async (body: DebtBody): Promise<Debt> => {
+  const res = await baseFetch('/debts/add', 'POST', body);
   return res.json();
 };
 
 type ForgiveDebtBody = {
-  userId: number;
+  userId: string;
   amount: number;
 };
 
-export const forgiveDebt = async (data: ForgiveDebtBody): Promise<Debt> => {
-  const currentUser = getCurrentUser();
-  const body = {
-    userId: currentUser.id,
-    debts: [data],
-    type: 'forgive',
-  };
-
-  const res = await baseFetch('/transactions', 'POST', body);
+export const forgiveDebt = async (body: ForgiveDebtBody): Promise<Debt> => {
+  const res = await baseFetch('/debts/forgive', 'POST', body);
   return res.json();
 };
 
 export type RepayDebtBody = {
-  userId: number;
+  userId: string;
   amount: number;
 };
 
-export const repayDebt = async (data: RepayDebtBody): Promise<Debt> => {
-  const currentUser = getCurrentUser();
-  const body = {
-    userId: currentUser.id,
-    debts: [data],
-    type: 'repay',
-  };
-
-  const res = await baseFetch('/transactions', 'POST', body);
+export const repayDebt = async (body: RepayDebtBody): Promise<Debt> => {
+  const res = await baseFetch('/debts/repay', 'POST', body);
   return res.json();
 };

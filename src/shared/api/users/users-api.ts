@@ -1,10 +1,7 @@
-import { getCurrentUser } from '../auth';
 import { baseFetch } from '../../lib';
+import { User } from './types';
 
-export const getUsers = async () => {
-  const { id } = getCurrentUser();
-
-  const res = await baseFetch(`/users?id_ne=${id}&_delay=2000`);
-
+export const getUsers = async (): Promise<User[]> => {
+  const res = await baseFetch(`/users`);
   return await res.json();
 };

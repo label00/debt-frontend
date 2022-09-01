@@ -1,5 +1,5 @@
 type FormValue = {
   description: string;
-  debts: { userId: number; amount: number }[];
+  debts: { userId: string; amount: number }[];
 };
 export type { FormValue };

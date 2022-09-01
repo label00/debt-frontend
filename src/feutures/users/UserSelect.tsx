@@ -10,7 +10,7 @@ export const UserSelect = ({ fieldName }: SelectDebtProps) => {
 
   return (
     <Select name={fieldName} label="Должник" disabled={loading}>
-      <Option value={0} disabled hidden>
+      <Option value={''} disabled hidden>
         Выберите должника
       </Option>
       {users.map((user) => (

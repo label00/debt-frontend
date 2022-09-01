@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore } from 'effector';
-import { auth, clearUser, getSavedUser, saveUser } from 'shared/api';
+import { auth, clearUser, saveUser } from 'shared/api';
 
 type UserData = {
   email: string;
@@ -7,22 +7,20 @@ type UserData = {
 };
 
 type UserState = {
-  id: number | null;
+  id: string | null;
   name: string | null;
   email: string | null;
 };
 
 const defaultState: UserState = { name: null, email: null, id: null };
-const savedUser = getSavedUser();
-const initialState = savedUser ?? defaultState;
 
 const loginUserFx = createEffect(async ({ email, password }: UserData) => await auth(email, password));
 const logout = createEvent();
-const $user = createStore(initialState);
+const $user = createStore(defaultState);
 
-$user.on(loginUserFx.done, (state, { result }) => result.user).on(logout, () => defaultState);
+$user.on(loginUserFx.done, (state, { result }) => result).on(logout, () => defaultState);
 
-loginUserFx.done.watch(({ result }) => saveUser(result.user));
+loginUserFx.done.watch(({ result }) => saveUser(result.access_token));
 logout.watch(() => clearUser());
 
 export const userModel = { $user, loginUserFx, logout };

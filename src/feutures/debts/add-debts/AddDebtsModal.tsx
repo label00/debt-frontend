@@ -10,9 +10,9 @@ const validationSchema = object().shape({
   description: string().required(),
   debts: array().of(
     object().shape({
-      userId: number().required().positive(),
+      userId: string().required(),
       amount: number().required().positive().integer(),
-    })
+    }),
   ),
 });
 
@@ -20,7 +20,7 @@ const initialValue: FormValue = {
   description: '',
   debts: [
     {
-      userId: 0,
+      userId: '',
       amount: 0,
     },
   ],
@@ -51,7 +51,7 @@ export const AddDebtsModal = () => {
               <FieldArray name="debts">
                 {(arrayHelpers) => (
                   <>
-                    <Button size="small" className="mb-2" onClick={() => arrayHelpers.push({ userId: 0, amount: 0 })}>
+                    <Button size="small" className="mb-2" onClick={() => arrayHelpers.push({ userId: '', amount: 0 })}>
                       Добавить должника
                     </Button>
 

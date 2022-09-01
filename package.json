@@ -30,8 +30,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.1",
-    "json-server": "^0.17.0",
-    "json-server-auth": "^2.1.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.6",
@@ -43,7 +41,6 @@
     "start": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "start:server": "node api/server.js -w",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write ."
