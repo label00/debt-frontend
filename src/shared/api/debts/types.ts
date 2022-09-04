@@ -1,15 +1,15 @@
 import { User } from '../users';
 
-export interface DebtBody {
+export type DebtBody = {
   description: string;
   debts: {
-    userId: number;
+    userId: string;
     amount: number;
   }[];
-}
+};
 
 export type Transaction = {
-  userId: number;
+  userId: string;
   description: string;
   type: string;
   createdAt: number;
@@ -17,7 +17,7 @@ export type Transaction = {
 };
 
 export type Debt = {
-  userId: number;
+  userId: string;
   amount: number;
   transactionId: number;
   lenderId: number;
@@ -27,7 +27,7 @@ export type Debt = {
 };
 
 export type UsersDebts = {
-  userId: number;
+  userId: string;
   userName: string;
   amount: number;
   type: 'loan' | 'borrow';

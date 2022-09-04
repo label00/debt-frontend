@@ -7,7 +7,7 @@ const $loaded = createStore(false);
 const mounded = createEvent();
 const filter$ = combine(
   $loaded.map((is) => !is),
-  usersModel.$loading.map((is) => !is)
+  usersModel.$loading.map((is) => !is),
 ).map((data) => data.reduce((acc, value) => acc && value, true));
 
 $loaded.on(usersModel.fetchUsersFx.done, () => true);

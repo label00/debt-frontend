@@ -1,3 +1,3 @@
 export * from './debts';
-export * from './user';
+export * from './viewer';
 export * from './users';

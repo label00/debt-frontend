@@ -25,7 +25,7 @@ export const Select = ({ name, children, label, ...rest }: SelectProps) => {
           {
             'border-pink-500 text-pink-600': isError,
             'border-slate-400': !isError,
-          }
+          },
         )}
         {...field}
         {...rest}

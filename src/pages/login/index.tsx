@@ -2,7 +2,7 @@ import { ErrorMessage, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { Button, Input } from 'shared/ui';
 import { object, string } from 'yup';
-import { userModel } from 'entities';
+import { viewerModel } from 'entities';
 
 type LoginValues = {
   email: string;
@@ -19,7 +19,7 @@ export const LoginPage = () => {
 
   const handleSubmit = async (data: LoginValues) => {
     try {
-      await userModel.loginUserFx(data);
+      await viewerModel.loginUserFx(data);
       navigate('/', { replace: true });
     } catch (e) {
       console.log(e);

@@ -1,3 +1,3 @@
-export { RequireAuth } from './auth/ui/RequireAuth';
+export * from './auth';
 export * from './users';
 export * from './debts';

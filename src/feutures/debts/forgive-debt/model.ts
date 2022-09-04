@@ -2,13 +2,13 @@ import { createEffect, createEvent, createStore, forward, sample } from 'effecto
 import { forgiveDebt } from 'shared/api';
 import { debtsModel } from 'entities';
 
-const $modal = createStore<{ userId?: number; amount?: number; isOpen: boolean }>({
+const $modal = createStore<{ userId?: string; amount?: number; isOpen: boolean }>({
   isOpen: false,
 });
-const openModal = createEvent<{ userId: number; amount: number }>();
+const openModal = createEvent<{ userId: string; amount: number }>();
 const closeModal = createEvent<void>();
 const submit = createEvent<number>();
-const forgiveDebtFx = createEffect(async (payload: { userId: number; amount: number }) => {
+const forgiveDebtFx = createEffect(async (payload: { userId: string; amount: number }) => {
   return await forgiveDebt(payload);
 });
 
@@ -20,7 +20,7 @@ $modal
 sample({
   clock: submit,
   source: $modal,
-  fn: (state, amount) => ({ userId: state.userId as number, amount: amount }),
+  fn: (state, amount) => ({ userId: state.userId!, amount: amount }),
   target: forgiveDebtFx,
 });
 

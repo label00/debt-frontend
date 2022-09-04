@@ -23,7 +23,7 @@ const DebtsList = () => {
     return <div>Нет долгов</div>;
   }
 
-  const handleClick = (userId: number, amount: number, type: 'loan' | 'borrow') => {
+  const handleClick = (userId: string, amount: number, type: 'loan' | 'borrow') => {
     if (type === 'loan') {
       forgiveModel.openModal({ userId, amount });
     }
