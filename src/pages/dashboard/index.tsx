@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { debtsModel } from 'entities';
 import { addDebtModel, AddDebtsModal } from 'feutures';
-import { Button, H3 } from 'shared/ui';
+import { Button, H2 } from 'shared/ui';
 import { DebtsList } from 'widgets';
 
 export const Dashboard = () => {
@@ -11,8 +11,8 @@ export const Dashboard = () => {
 
   return (
     <div className="container mx-auto">
-      <div>
-        <H3>Список долгов</H3>
+      <div className="flex gap-2 mb-4 items-center">
+        <H2>Список долгов</H2>
         <Button size="small" onClick={() => addDebtModel.openModal()}>
           Добавить долг
         </Button>

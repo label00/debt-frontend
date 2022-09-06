@@ -5,3 +5,7 @@ export { Portal } from './Portal';
 export { Dialog } from './Dialog';
 export * from './Typography';
 export * from './Table';
+export * from './Avatar';
+export * from './Chip';
+export * from './Skeleton';
+export * from './ErrorCard';

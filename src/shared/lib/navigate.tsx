@@ -3,7 +3,6 @@ import { NavigateFunction } from 'react-router/lib/hooks';
 import { createGate, useGate } from 'effector-react';
 import { ComponentType } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { debug } from 'patronum';
 
 const navigateGate = createGate<NavigateFunction>();
 
@@ -31,6 +30,5 @@ const createNavigateFx = (to: string) =>
     mapParams: () => to,
   });
 
-debug({ navigateToFx });
 
 export { navigateGate, navigateToFx, attachNavigate, createNavigateFx };

@@ -38,11 +38,17 @@ export const LoginPage = () => {
                 <Form>
                   <div className="flex flex-col space-y-4 mb-6">
                     <div>
-                      <Input label="Email" name="email" type="email" placeholder="mail@mail.com" />
+                      <Input autoComplete="email" label="Email" name="email" type="email" placeholder="mail@mail.com" />
                       <ErrorMessage className="absolute text-xs text-red-600" component="div" name="email" />
                     </div>
                     <div>
-                      <Input label="Пароль" name="password" type="password" placeholder="******" />
+                      <Input
+                        autoComplete="new-password"
+                        label="Пароль"
+                        name="password"
+                        type="password"
+                        placeholder="******"
+                      />
                       <ErrorMessage className="absolute text-xs text-red-600" component="div" name="password" />
                     </div>
                   </div>

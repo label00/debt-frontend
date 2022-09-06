@@ -5,7 +5,7 @@ const Header = ({ children }: PropsWithChildren) => {
 };
 
 const Content = ({ children }: PropsWithChildren) => {
-  return <div className="w-full p-10 h-full">{children}</div>;
+  return <div className="w-full px-4 sm:px-10 py-10 h-full">{children}</div>;
 };
 
 export const Layout = {

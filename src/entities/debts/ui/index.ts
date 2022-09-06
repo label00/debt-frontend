@@ -1,1 +1,1 @@
-export { DebtsRow } from './DebtsRow';
+export * from './DebtsCard';

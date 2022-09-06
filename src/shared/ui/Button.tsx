@@ -11,9 +11,9 @@ export type ButtonProps = {
   color?: ColorType;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const sizes = {
+const sizes: Record<SizeTypes, string> = {
   medium: 'px-4 py-1 font-semibold rounded-md',
-  small: 'px-3 py-1 text-sm font-medium rounded-md',
+  small: 'px-2 py-0.5 text-sm font-medium rounded-md',
 };
 
 const base = 'disabled:border-gray-100 disabled:text-gray-500 disabled:opacity-70 disabled:bg-gray-100';
@@ -56,7 +56,7 @@ const variants: Record<VariantType, Record<ColorType, string>> = {
       focus:border-blue-700
     `,
     secondary: `
-      border bg-purple-600 text-white
+      border border-transparent bg-purple-600 text-white
       hover:text-purple-700 hover:bg-purple-400
       focus:text-purple-700 focus:bg-purple-400
     `,

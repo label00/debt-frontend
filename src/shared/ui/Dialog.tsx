@@ -2,6 +2,8 @@ import { PropsWithChildren } from 'react';
 import { Portal } from './Portal';
 import { H2 } from './Typography';
 
+// TODO: Добавить фокус на модалку при открытии
+
 type DialogProps = PropsWithChildren<{
   isOpen?: boolean;
   onClose?: () => void;

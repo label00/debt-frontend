@@ -1,4 +1,4 @@
-import { Layout as SharedLayout } from '../../shared/ui';
+import { Avatar, Layout as SharedLayout } from '../../shared/ui';
 import { Link, Outlet } from 'react-router-dom';
 import { LogoutButton } from 'feutures/auth';
 import { useStore } from 'effector-react';
@@ -17,9 +17,7 @@ export const Layout = () => {
           </Link>
           <div className="flex gap-2 items-center">
             <LogoutButton />
-            <div className="w-10 h-10 bg-indigo-400 rounded-full flex justify-center items-center">
-              <span className="text-white text-xl font-bold uppercase select-none">{initial}</span>
-            </div>
+            <Avatar>{initial}</Avatar>
           </div>
         </div>
       </SharedLayout.Header>
