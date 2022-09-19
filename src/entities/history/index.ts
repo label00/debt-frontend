@@ -32,3 +32,4 @@ sample({
 });
 
 export const historyModel = { $history, $list, $loading, $error, navigateToHistory, loadFx };
+export { Row } from './HistoryRow';

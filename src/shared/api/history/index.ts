@@ -3,12 +3,11 @@ import { baseFetch } from '../../lib';
 type TransactionTypes = 'repay' | 'add' | 'forgive';
 
 type History = {
-  targetUserName: string;
-  creatorUserName: string;
-  isCurrentUser: boolean;
+  userName: string;
   transactionType: TransactionTypes;
   amount: number;
   createdAt: string;
+  isPositive: boolean;
 };
 
 type Pagination = {

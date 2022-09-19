@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { UsersDebts } from 'shared/api';
-import { Avatar, Chip, BadgeColorsType } from 'shared/ui';
+import { Avatar, Chip, ChipColors } from 'shared/ui';
 
 type DebtsCardProps = {
   debt: UsersDebts;
@@ -13,7 +13,7 @@ const BADGES_TEXT = {
   borrow: 'Одолжил',
 };
 
-const BADGES_COLORS: Record<string, BadgeColorsType> = {
+const BADGES_COLORS: Record<string, ChipColors> = {
   loan: 'red',
   borrow: 'green',
 };
@@ -34,7 +34,7 @@ export const DebtsCard = ({ debt, action, onClick }: DebtsCardProps) => {
         <div className="flex flex-col text-start relative">
           <div className="flex items-center gap-1 text-xl">
             <span className="font-bold capitalize">{debt.userName}</span>
-            <Chip color={BADGES_COLORS[debt.type]}>{BADGES_TEXT[debt.type]}</Chip>
+            <Chip size="sm" color={BADGES_COLORS[debt.type]}>{BADGES_TEXT[debt.type]}</Chip>
           </div>
           <span className="font-medium 700 text-sm text-gray-500">{debt.amount}ye</span>
         </div>
